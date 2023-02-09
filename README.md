@@ -24,7 +24,7 @@
 
 ### Objectives
 
-- This project is one of the requirements of conclusion of the second module in Rocketseat's Ignite course. The goals are to build an e-commerce SSR application usign Next Framework tools, API requests (Stripe), styling with stiches, use cases for SSG, SSR and Fetch.
+- This project is one of the requirements of conclusion of the second module in Rocketseat's Ignite course. The goals are to build an e-commerce SSR application usign Next Framework tools, API requests (Stripe), styling with stiches, use cases for SSG, SSR, getStaticProps, getStaticPaths, Fetch.
 
 ### Status
 
