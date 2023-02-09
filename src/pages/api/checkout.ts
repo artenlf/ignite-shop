@@ -2,7 +2,16 @@ import { stripe } from "@/src/lib/stipe";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function checkoutHandler(req: NextApiRequest, res: NextApiResponse) {
-  const priceId = 'price_1MXYktAafzousmhlmPpaVvVQ';
+  const { priceId } = req.body;
+
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed.' });
+
+  }
+
+  if (!priceId) {
+    return res.status(404).json({ error: 'Price not found.' });
+  }
 
   const successUrl = `${process.env.NEXT_URL}/success`;
   const cancelUrl = `${process.env.NEXT_URL}/`;
