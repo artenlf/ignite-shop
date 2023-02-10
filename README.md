@@ -21,6 +21,7 @@
 - Stiches
 - EsLint
 - Stripe API
+- Axios
 
 ### Objectives
 
