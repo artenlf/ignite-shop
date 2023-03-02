@@ -9,8 +9,19 @@ export const Container = styled('div', {
 })
 
 export const Header = styled('header', {
-  padding: '2rem 0',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  padding: '2rem 8.5rem',
   width: '100%',
-  maxWidth: 1180,
-  margin: '0 auto',
-})
+  maxWidth: '100%',
+
+  '.icon-background': {
+    borderRadius: '6px',
+    backgroundColor: '$gray800',
+    color: '$gray500',
+    padding: '0.75rem',
+    maxHeight: '3rem',
+  }
+}
+)
