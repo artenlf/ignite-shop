@@ -11,6 +11,7 @@ export const HomeContainer = styled('main', {
     position: 'absolute',
     background: 'linear-gradient(90deg, rgba(18, 18, 20, 0) 0%, rgba(18, 18, 20, 0.75) 100%)',
 
+    opacity: 1
   },
 
   '.gradient-left': {
@@ -24,9 +25,38 @@ export const HomeContainer = styled('main', {
 
   '.caret-right-icon': {
     color: '$gray300',
+    cursor: 'pointer',
     position: 'absolute',
     right: 16,
     bottom: '50%',
+    opacity: 0.25,
+
+    '&:hover': {
+      opacity: 1,
+      transition: 'all 0.3s ease-in-out',
+      '.gradient': {
+        transition: 'all 0.3s ease-in-out',
+        opacity: 1,
+      },
+    },
+  },
+
+  '.caret-left-icon': {
+    color: '$gray300',
+    cursor: 'pointer',
+    position: 'absolute',
+    left: 16,
+    bottom: '50%',
+    opacity: 0,
+
+    '&:hover': {
+      opacity: 1,
+      transition: 'all 0.3s ease-in-out',
+      '.gradient': {
+        transition: 'all 0.3s ease-in-out',
+        opacity: 1,
+      },
+    },
   }
 })
 

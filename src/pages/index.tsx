@@ -8,7 +8,7 @@ import { HomeContainer, Product } from "../styles/pages/home";
 import { GetStaticProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { CaretRight, Handbag } from "phosphor-react";
+import { CaretLeft, CaretRight, Handbag } from "phosphor-react";
 import Stripe from "stripe";
 import { stripe } from "../lib/stipe";
 
@@ -56,6 +56,7 @@ export default function Home({ products }: HomeProps) {
         })}
         <div className="gradient gradient-left" />
         <div className="gradient gradient-right" />
+        <CaretLeft size={48} weight="bold" className="caret-left-icon" />
         <CaretRight size={48} weight="bold" className="caret-right-icon" />
       </HomeContainer>
     </>
