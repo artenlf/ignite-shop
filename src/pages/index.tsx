@@ -8,7 +8,7 @@ import { HomeContainer, Product } from "../styles/pages/home";
 import { GetStaticProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { Handbag } from "phosphor-react";
+import { CaretRight, Handbag } from "phosphor-react";
 import Stripe from "stripe";
 import { stripe } from "../lib/stipe";
 
@@ -35,9 +35,6 @@ export default function Home({ products }: HomeProps) {
         <title>Ignite Shop | by artenlf</title>
       </Head>
       <HomeContainer ref={sliderRef} className="keen-slider">
-
-
-
         {products.map(product => {
           return (
             <Link href={`/product/${product.id}`} key={product.id} prefetch={false}>
@@ -57,6 +54,9 @@ export default function Home({ products }: HomeProps) {
             </Link>
           )
         })}
+        <div className="gradient gradient-left" />
+        <div className="gradient gradient-right" />
+        <CaretRight size={48} weight="bold" className="caret-right-icon" />
       </HomeContainer>
     </>
   )

@@ -2,9 +2,32 @@ import { styled } from "..";
 
 export const HomeContainer = styled('main', {
   display: 'flex',
-  width: '100%',
   padding: '0 8.5rem',
   minHeight: 656,
+
+  '.gradient': {
+    minHeight: '100%',
+    minWidth: '136px',
+    position: 'absolute',
+    background: 'linear-gradient(90deg, rgba(18, 18, 20, 0) 0%, rgba(18, 18, 20, 0.75) 100%)',
+
+  },
+
+  '.gradient-left': {
+    left: 0,
+    transform: 'matrix(-1, 0, 0, 1, 0, 0)',
+  },
+
+  '.gradient-right': {
+    right: 0,
+  },
+
+  '.caret-right-icon': {
+    color: '$gray300',
+    position: 'absolute',
+    right: 16,
+    bottom: '50%',
+  }
 })
 
 export const Product = styled('div', {
