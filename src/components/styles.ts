@@ -28,6 +28,8 @@ export const Content = styled(Dialog.Content, {
   backgroundColor: '$gray800',
   boxShadow: '-4px 0px 30px rgba(0, 0, 0, 0.8)',
 
+  display: 'flex',
+  flexDirection: 'column',
 })
 
 export const Title = styled(Dialog.Title, {
@@ -47,34 +49,87 @@ export const CloseButton = styled(Dialog.Close, {
 })
 
 export const CartItemsContainer = styled('div', {
-
   display: 'flex',
   flexDirection: 'column',
+  minHeight: 519,
+  justifyContent: 'center',
   overflow: 'auto',
 
   div: {
     width: '100%',
     display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    gridTemplateRows: '1fr 1fr 1fr',
-    gap: 2,
+    gridTemplateColumns: 'min-content auto',
+    gridTemplateRows: 'min-content auto',
+    columnGap: 20,
     padding: '2rem 0 ',
+
+    img: {
+      gridRow: '1 / 3 span',
+    },
+
+    strong: {
+      fontWeight: 'bold',
+      fontSize: '1.125rem',
+    },
+
+    span: {
+      fontSize: '1.125rem',
+    },
+
+    button: {
+      background: 'transparent',
+      border: 'none',
+      color: '$green500',
+      fontWeight: 'bold',
+      maxWidth: 'fit-content',
+    },
   },
 
-  img: {
-    gridRow: '1 / 3 span',
+  '.empty-cart': {
+    fontSize: '1.25rem',
+    textAlign: 'center',
+    alignSelf: 'center',
+    justifySelf: 'center',
+    maxWidth: '17.5rem',
   },
+})
+
+export const SummaryContainer = styled('div', {
+  display: 'grid',
+  position: 'fixed',
+  bottom: 48,
+  gap: 8,
+  gridTemplateColumns: 'repeat 2',
+  justifyContent: 'space-between',
+  minWidth: 384,
 
   span: {
-    fontWeight: 'bold',
+    gridRow: '1',
+
+    '&:nth-child(2)': {
+      justifySelf: 'end',
+    }
+  },
+
+  strong: {
+    gridRow: '2',
+    fontSize: '1.125rem',
   },
 
   button: {
-    background: 'transparent',
+    padding: '1.5rem 0',
     border: 'none',
-    color: '$green500',
-    fontWeight: 'bold',
-    maxWidth: 'fit-content',
-  }
+    borderRadius: 8,
+    gridColumn: '1 / 2 span',
+    marginTop: '3rem',
 
+    backgroundColor: '$green500',
+    color: '$white',
+    fontSize: '1.125rem',
+    fontWeight: 'bold',
+
+    '&:hover': {
+      backgroundColor: '$green300',
+    }
+  }
 })
