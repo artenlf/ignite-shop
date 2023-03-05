@@ -46,6 +46,11 @@ export const CloseButton = styled(Dialog.Close, {
   lineHeight: 0,
   cursor: 'pointer',
   color: '$gray500',
+  transition: 'all 0.2s ease-in-out',
+
+  '&:hover': {
+    color: '$green500',
+  },
 })
 
 export const CartItemsContainer = styled('div', {
@@ -82,6 +87,11 @@ export const CartItemsContainer = styled('div', {
       color: '$green500',
       fontWeight: 'bold',
       maxWidth: 'fit-content',
+
+      '&:hover': {
+        borderBottom: '1px solid $green500',
+        lineHeight: 'calc(100% - 1px)',
+      },
     },
   },
 
@@ -127,6 +137,7 @@ export const SummaryContainer = styled('div', {
     color: '$white',
     fontSize: '1.125rem',
     fontWeight: 'bold',
+    transition: '0.2s ease-in-out',
 
     '&:hover': {
       backgroundColor: '$green300',

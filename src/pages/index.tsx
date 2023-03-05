@@ -27,7 +27,7 @@ export default function Home({ products }: HomeProps) {
     slides: {
       perView: 2,
       spacing: 48,
-    }
+    },
   })
   return (
     <>
