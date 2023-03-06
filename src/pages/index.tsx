@@ -10,7 +10,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { CaretLeft, CaretRight, Handbag } from "phosphor-react";
 import Stripe from "stripe";
-import { stripe } from "../lib/stipe";
+import { stripe } from "../lib/stripe";
 
 interface HomeProps {
   products: {

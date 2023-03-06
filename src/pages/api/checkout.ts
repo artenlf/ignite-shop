@@ -1,4 +1,4 @@
-import { stripe } from "@/src/lib/stipe";
+import { stripe } from "@/src/lib/stripe";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function checkoutHandler(req: NextApiRequest, res: NextApiResponse) {

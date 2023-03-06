@@ -1,43 +1,52 @@
-import { stripe } from "@/src/lib/stipe"
+import { stripe } from "@/src/lib/stripe"
 import { ImageContainer, ProductContainer, ProductDetails } from "@/src/styles/pages/product"
-import axios from "axios"
 import { GetStaticPaths, GetStaticProps } from "next"
 import Head from "next/head"
 import Image from "next/image"
-import { useState } from "react"
 import Stripe from "stripe"
+import { useShoppingCart } from "use-shopping-cart"
 
 interface ProductProps {
   product: {
     id: string,
     name: string,
     imageUrl: string,
-    price: string,
+    price: number,
     description: string,
     defaultPriceId: string,
+    currency: string,
   }
 }
 
+
 export default function Product({ product }: ProductProps) {
-  const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false);
+  const { addItem } = useShoppingCart();
 
-  async function handleBuyProduct() {
-    try {
-      setIsCreatingCheckoutSession(true);
+  // const price: string = formatCurrencyString({
+  //   value: Number(product.price),
+  //   currency: product.currency,
+  //   language: 'pt-BR'
+  // })
 
-      const response = await axios.post('/api/checkout', {
-        priceId: product.defaultPriceId,
-      })
+  // const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false);
 
-      const { checkoutUrl } = response.data;
+  // async function handleBuyProduct() {
+  //   try {
+  //     setIsCreatingCheckoutSession(true);
 
-      window.location.href = checkoutUrl;
-    } catch (error) {
-      setIsCreatingCheckoutSession(false);
+  //     const response = await axios.post('/api/checkout', {
+  //       priceId: product.price_id,
+  //     })
 
-      alert('Falha ao redirecionar ao checkout')
-    }
-  }
+  //     const { checkoutUrl } = response.data;
+
+  //     window.location.href = checkoutUrl;
+  //   } catch (error) {
+  //     setIsCreatingCheckoutSession(false);
+
+  //     alert('Falha ao redirecionar ao checkout')
+  //   }
+  // }
 
   return (
     <>
@@ -59,7 +68,7 @@ export default function Product({ product }: ProductProps) {
           <span>{product.price}</span>
 
           <p>{product.description}</p>
-          <button disabled={isCreatingCheckoutSession} onClick={handleBuyProduct}>
+          <button onClick={() => addItem(product)}>
             Comprar agora
           </button>
         </ProductDetails>
