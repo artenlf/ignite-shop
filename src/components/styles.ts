@@ -57,7 +57,6 @@ export const CartItemsContainer = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   minHeight: 519,
-  justifyContent: 'center',
   overflow: 'auto',
 
   div: {
@@ -70,6 +69,8 @@ export const CartItemsContainer = styled('div', {
 
     img: {
       gridRow: '1 / 3 span',
+      background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
+      borderRadius: 8,
     },
 
     strong: {
@@ -99,7 +100,7 @@ export const CartItemsContainer = styled('div', {
     fontSize: '1.25rem',
     textAlign: 'center',
     alignSelf: 'center',
-    justifySelf: 'center',
+    margin: 'auto 0',
     maxWidth: '17.5rem',
   },
 })
