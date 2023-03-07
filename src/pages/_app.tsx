@@ -23,9 +23,9 @@ export default function App({ Component, pageProps }: AppProps) {
           <Link href={'/'}>
             <Image src={logoImg} alt="logo" priority />
           </Link>
+          <CartMenu />
         </Header>
         <Component {...pageProps} />
-        <CartMenu />
       </Container>
       {/* <DebugCart /> */}
     </CartProvider>

@@ -23,12 +23,29 @@ export const HomeContainer = styled('main', {
     right: 0,
   },
 
-  '.caret-right-icon': {
-    color: '$gray300',
+  '.keen-slider__prev, .keen-slider__next': {
+    background: 'transparent',
+    border: 'none',
     cursor: 'pointer',
     position: 'absolute',
-    right: 16,
     bottom: '50%',
+
+    '&:disabled': {
+      opacity: 0,
+      cursor: 'default',
+    },
+  },
+
+  '.keen-slider__next': {
+    right: 16,
+  },
+
+  '.keen-slider__prev': {
+    left: 16,
+  },
+
+  '.caret-right-icon, .caret-left-icon': {
+    color: '$gray300',
     opacity: 0.25,
 
     '&:hover': {
@@ -40,24 +57,6 @@ export const HomeContainer = styled('main', {
       },
     },
   },
-
-  '.caret-left-icon': {
-    color: '$gray300',
-    cursor: 'pointer',
-    position: 'absolute',
-    left: 16,
-    bottom: '50%',
-    opacity: 0,
-
-    '&:hover': {
-      opacity: 1,
-      transition: 'all 0.3s ease-in-out',
-      '.gradient': {
-        transition: 'all 0.3s ease-in-out',
-        opacity: 1,
-      },
-    },
-  }
 })
 
 export const Product = styled('div', {
@@ -65,7 +64,6 @@ export const Product = styled('div', {
   borderRadius: 8,
   cursor: 'pointer',
   position: 'relative',
-  overflow: 'hidden',
 
   display: 'flex',
   alignItems: 'center',
