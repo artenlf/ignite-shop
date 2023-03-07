@@ -38,6 +38,10 @@ export default function Home({ products }: HomeProps) {
     initial: 0,
     slideChanged(slider) {
       setCurrentSlide(slider.track.details.rel)
+    },
+    loop: {
+      min: 0,
+      max: 3,
     }
   })
 
@@ -101,7 +105,7 @@ export default function Home({ products }: HomeProps) {
         </button >
         <button
           onClick={handleNextSlide}
-          disabled={currentSlide === products.length - 2}
+          disabled={currentSlide === products.length - 1}
           className='keen-slider__next'
         >
           <CaretRight size={48} weight="bold" className="caret-right-icon" />
