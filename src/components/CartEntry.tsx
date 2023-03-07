@@ -1,8 +1,8 @@
-import Image from "next/image"
+import Image from "next/image";
 import {
   CartActions,
   CartEntry as ICartEntry
-} from "use-shopping-cart/core"
+} from "use-shopping-cart/core";
 
 export function CartEntry({
   entry,
@@ -21,7 +21,7 @@ export function CartEntry({
       />
       <span>{entry.name}</span>
       <strong>
-        {entry.price}
+        {entry.formattedValue}
       </strong>
       <button onClick={() => removeItem(entry.id)}>Remover</button>
       {/* <p>

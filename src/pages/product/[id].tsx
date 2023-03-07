@@ -4,9 +4,9 @@ import { GetStaticPaths, GetStaticProps } from "next"
 import Head from "next/head"
 import Image from "next/image"
 import Stripe from "stripe"
-import { useShoppingCart } from "use-shopping-cart"
+import { formatCurrencyString, useShoppingCart } from "use-shopping-cart"
 
-interface ProductProps {
+export interface ProductProps {
   product: {
     id: string,
     name: string,
@@ -65,7 +65,14 @@ export default function Product({ product }: ProductProps) {
         </ImageContainer>
         <ProductDetails>
           <h1>{product.name}</h1>
-          <span>{product.price}</span>
+          <span>
+            {
+              formatCurrencyString({
+                value: product.price,
+                currency: 'BRL'
+              })
+            }
+          </span>
 
           <p>{product.description}</p>
           <button onClick={() => addItem(product)}>
@@ -102,10 +109,7 @@ export const getStaticProps: GetStaticProps<any, { id: string }> = async ({ para
         id: product.id,
         name: product.name,
         imageUrl: product.images[0],
-        price: new Intl.NumberFormat('pt-br', {
-          style: 'currency',
-          currency: 'BRL',
-        }).format(price.unit_amount / 100),
+        price: price.unit_amount,
         description: product.description,
         defaultPriceId: price.id,
       }

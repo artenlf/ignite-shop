@@ -2,6 +2,7 @@ import type { AppProps } from 'next/app';
 import Image from 'next/image';
 import { globalStyles } from '../styles/global';
 
+import Link from 'next/link';
 import { CartProvider } from 'use-shopping-cart';
 import logoImg from '../assets/logo.svg';
 import CartMenu from '../components/CartMenu';
@@ -19,10 +20,12 @@ export default function App({ Component, pageProps }: AppProps) {
     >
       <Container>
         <Header>
-          <Image src={logoImg} alt="logo" priority />
-          <CartMenu />
+          <Link href={'/'}>
+            <Image src={logoImg} alt="logo" priority />
+          </Link>
         </Header>
         <Component {...pageProps} />
+        <CartMenu />
       </Container>
       {/* <DebugCart /> */}
     </CartProvider>

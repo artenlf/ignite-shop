@@ -10,6 +10,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { CaretLeft, CaretRight, Handbag } from "phosphor-react";
 import Stripe from "stripe";
+import { formatCurrencyString, useShoppingCart } from "use-shopping-cart";
 import { stripe } from "../lib/stripe";
 
 interface HomeProps {
@@ -17,12 +18,16 @@ interface HomeProps {
     id: string,
     name: string,
     imageUrl: string,
-    price: string,
+    price: number,
+    price_id: string,
+    currency: string,
   }[]
 }
 
 
 export default function Home({ products }: HomeProps) {
+  const { addItem } = useShoppingCart();
+
   const [sliderRef] = useKeenSlider({
     slides: {
       perView: 2,
@@ -37,18 +42,32 @@ export default function Home({ products }: HomeProps) {
       <HomeContainer ref={sliderRef} className="keen-slider">
         {products.map(product => {
           return (
-            <Link href={`/product/${product.id}`} key={product.id} prefetch={false}>
+            <Link
+              href={`/product/${product.id}`}
+              key={product.id}
+              prefetch={false}
+            >
               <Product className="keen-slider__slide">
                 <Image src={product.imageUrl} width={520} height={480} alt="" />
 
                 <footer>
                   <div>
                     <strong>{product.name}</strong>
-                    <span>{product.price}</span>
+                    <span>
+                      {
+                        formatCurrencyString({
+                          value: product.price,
+                          currency: 'BRL'
+                        })
+                      }
+                    </span>
                   </div>
-                  <div className="icon-background">
+                  <button
+                    className="icon-background"
+                  // onClick={() => addItem(product)}
+                  >
                     <Handbag size={32} weight="bold" />
-                  </div>
+                  </button>
                 </footer>
               </Product>
             </Link>
@@ -76,10 +95,7 @@ export const getStaticProps: GetStaticProps = async () => {
       id: product.id,
       name: product.name,
       imageUrl: product.images[0],
-      price: new Intl.NumberFormat('pt-br', {
-        style: 'currency',
-        currency: 'BRL',
-      }).format(price.unit_amount / 100),
+      price: price.unit_amount,
     }
   })
 

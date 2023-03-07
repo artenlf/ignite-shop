@@ -119,11 +119,17 @@ export const Product = styled('div', {
     }
   },
 
-  '.icon-background': {
+  button: {
     backgroundColor: '$green500',
+    border: 'none',
     borderRadius: '6px',
     color: 'white',
     maxHeight: '3.5rem',
     padding: '0.75rem',
+
+    '&:hover': {
+      backgroundColor: '$green300',
+      cursor: 'pointer',
+    },
   }
 })
