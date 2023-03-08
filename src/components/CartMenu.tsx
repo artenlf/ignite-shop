@@ -1,20 +1,64 @@
 import * as Dialog from '@radix-ui/react-dialog';
+import axios from 'axios';
 
 import { Handbag, X } from 'phosphor-react';
+import { useState } from 'react';
 import { useShoppingCart } from 'use-shopping-cart';
 import { CartEntry } from './CartEntry';
-import { CartItemsContainer, CloseButton, Content, Overlay, SummaryContainer, Title, Trigger } from './styles';
+import {
+  CartItemsContainer,
+  CloseButton,
+  Content,
+  Overlay,
+  SummaryContainer,
+  Title,
+  Trigger
+} from './styles';
+
+export interface ProductProps {
+  defaultPriceId: any
+  product: {
+    id: string,
+    name: string,
+    imageUrl: string,
+    price: number,
+    description: string,
+    defaultPriceId: string,
+    currency: string,
+    price_id: string,
+  }
+}
 
 export default function CartMenu() {
 
   const cart = useShoppingCart()
-  const { removeItem, cartCount, cartDetails, formattedTotalPrice, redirectToCheckout } = cart
+  const { removeItem, cartCount, cartDetails, formattedTotalPrice } = cart;
 
   const cartEntries = Object.values(cartDetails ?? {}).map((entry) => (
     <CartEntry key={entry.id} entry={entry} removeItem={removeItem} />
   ))
 
   const numberOfCartEntries = cartEntries.length;
+
+  const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] =
+    useState(false);
+
+  async function handleCheckout() {
+    try {
+      setIsCreatingCheckoutSession(true);
+
+      const response = await axios.post("/api/checkout", {
+        products: cartDetails,
+      });
+
+      const { checkoutUrl } = response.data;
+
+      window.location.href = checkoutUrl;
+    } catch (err) {
+      setIsCreatingCheckoutSession(false);
+      alert("Falha ao redirecionar ao checkout!");
+    }
+  }
 
   return (
     <Dialog.Root>
@@ -42,9 +86,6 @@ export default function CartMenu() {
             {numberOfCartEntries > 0 &&
               cartEntries
             }
-            {status === 'redirect-error' && (
-              <p>Unable to redirect to Stripe checkout page.</p>
-            )}
           </CartItemsContainer>
           <SummaryContainer>
             <span>Quantidade</span>
@@ -55,8 +96,8 @@ export default function CartMenu() {
             <strong>Valor total</strong>
             <strong>{formattedTotalPrice}</strong>
             <button
-              disabled={cartCount === 0}
-            // onClick={handleCartCheckout}
+              disabled={cartCount === 0 && isCreatingCheckoutSession}
+              onClick={handleCheckout}
             >
               Finalizar compra
             </button>
