@@ -8,11 +8,13 @@ import { CartItemsContainer, CloseButton, Content, Overlay, SummaryContainer, Ti
 export default function CartMenu() {
 
   const cart = useShoppingCart()
-  const { removeItem, cartDetails, formattedTotalPrice } = cart
+  const { removeItem, cartCount, cartDetails, formattedTotalPrice, redirectToCheckout } = cart
 
   const cartEntries = Object.values(cartDetails ?? {}).map((entry) => (
     <CartEntry key={entry.id} entry={entry} removeItem={removeItem} />
   ))
+
+  const numberOfCartEntries = cartEntries.length;
 
   return (
     <Dialog.Root>
@@ -30,25 +32,31 @@ export default function CartMenu() {
             Sacola de compras
           </Title>
           <CartItemsContainer>
-            {cartEntries.length === 0 &&
+            {numberOfCartEntries === 0 &&
               <span
                 className='empty-cart'
               >
                 Ops! Parece que seu carrinho está vazio.
               </span>
             }
-            {cartEntries.length > 0 &&
+            {numberOfCartEntries > 0 &&
               cartEntries
             }
+            {status === 'redirect-error' && (
+              <p>Unable to redirect to Stripe checkout page.</p>
+            )}
           </CartItemsContainer>
           <SummaryContainer>
             <span>Quantidade</span>
-            <span>3 Itens</span>
+            <span>
+              {cartCount}
+              {cartCount !== 1 ? ' itens' : ' item'}
+            </span>
             <strong>Valor total</strong>
-            <strong>R$ 270,00</strong>
+            <strong>{formattedTotalPrice}</strong>
             <button
-            // disabled={isCreatingCheckoutSession}
-            // onClick={handleBuyCart}
+              disabled={cartCount === 0}
+            // onClick={handleCartCheckout}
             >
               Finalizar compra
             </button>

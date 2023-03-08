@@ -140,8 +140,14 @@ export const SummaryContainer = styled('div', {
     fontWeight: 'bold',
     transition: '0.2s ease-in-out',
 
+    '&:disabled': {
+      cursor: 'not-allowed',
+      opacity: 0.5,
+    },
+
     '&:hover': {
       backgroundColor: '$green300',
+      cursor: 'pointer',
     }
   }
 })
