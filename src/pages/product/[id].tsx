@@ -1,3 +1,4 @@
+import { ProductProps } from "@/src/components/CartMenu"
 import { stripe } from "@/src/lib/stripe"
 import { ImageContainer, ProductContainer, ProductDetails } from "@/src/styles/pages/product"
 import { GetStaticPaths, GetStaticProps } from "next"
@@ -6,47 +7,9 @@ import Image from "next/image"
 import Stripe from "stripe"
 import { formatCurrencyString, useShoppingCart } from "use-shopping-cart"
 
-export interface ProductProps {
-  product: {
-    id: string,
-    name: string,
-    imageUrl: string,
-    price: number,
-    description: string,
-    defaultPriceId: string,
-    currency: string,
-  }
-}
-
 
 export default function Product({ product }: ProductProps) {
   const { addItem } = useShoppingCart();
-
-  // const price: string = formatCurrencyString({
-  //   value: Number(product.price),
-  //   currency: product.currency,
-  //   language: 'pt-BR'
-  // })
-
-  // const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false);
-
-  // async function handleBuyProduct() {
-  //   try {
-  //     setIsCreatingCheckoutSession(true);
-
-  //     const response = await axios.post('/api/checkout', {
-  //       priceId: product.price_id,
-  //     })
-
-  //     const { checkoutUrl } = response.data;
-
-  //     window.location.href = checkoutUrl;
-  //   } catch (error) {
-  //     setIsCreatingCheckoutSession(false);
-
-  //     alert('Falha ao redirecionar ao checkout')
-  //   }
-  // }
 
   return (
     <>
