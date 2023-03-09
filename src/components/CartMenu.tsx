@@ -4,7 +4,6 @@ import axios from 'axios';
 import { Handbag, X } from 'phosphor-react';
 import { useState } from 'react';
 import { useShoppingCart } from 'use-shopping-cart';
-import { CartEntry } from './CartEntry';
 import {
   CartItemsContainer,
   CloseButton,
@@ -13,20 +12,19 @@ import {
   SummaryContainer,
   Title,
   Trigger
-} from './styles';
+} from '../styles/pages/components/cart';
+import { CartEntry } from './CartEntry';
 
 export interface ProductProps {
-  defaultPriceId: any
-  product: {
-    id: string,
-    name: string,
-    imageUrl: string,
-    price: number,
-    description: string,
-    defaultPriceId: string,
-    currency: string,
-    price_id: string,
-  }
+  id: string,
+  name: string,
+  imageUrl: string,
+  price: number,
+  description: string,
+  defaultPriceId: string,
+  currency: string,
+  price_id: string,
+
 }
 
 export default function CartMenu() {

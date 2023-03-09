@@ -9,20 +9,14 @@ import { GetStaticProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { CaretLeft, CaretRight, Handbag } from "phosphor-react";
-import { useState } from "react";
+import { MouseEvent, useState } from "react";
 import Stripe from "stripe";
 import { formatCurrencyString, useShoppingCart } from "use-shopping-cart";
+import { ProductProps } from "../components/CartMenu";
 import { stripe } from "../lib/stripe";
 
 interface HomeProps {
-  products: {
-    id: string,
-    name: string,
-    imageUrl: string,
-    price: number,
-    price_id: string,
-    currency: string,
-  }[]
+  products: ProductProps[];
 }
 
 
@@ -32,7 +26,7 @@ export default function Home({ products }: HomeProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [sliderRef, slider] = useKeenSlider({
     slides: {
-      perView: 2,
+      perView: 3,
       spacing: 48,
     },
     initial: 0,
@@ -44,6 +38,14 @@ export default function Home({ products }: HomeProps) {
       max: 3,
     }
   })
+
+  function handleAddToCart(
+    e: MouseEvent<HTMLButtonElement>,
+    products: ProductProps
+  ) {
+    e.preventDefault();
+    addItem(products);
+  }
 
   function handlePrevSlide(event: any) {
     event.stopPropagation() || slider.current?.prev()
@@ -85,7 +87,7 @@ export default function Home({ products }: HomeProps) {
                   </div>
                   <button
                     className="icon-background"
-                  // onClick={() => addItem(product)}
+                    onClick={(e) => handleAddToCart(e, product)}
                   >
                     <Handbag size={32} weight="bold" />
                   </button>
@@ -105,7 +107,7 @@ export default function Home({ products }: HomeProps) {
         </button >
         <button
           onClick={handleNextSlide}
-          disabled={currentSlide === products.length - 1}
+          disabled={currentSlide === products.length - 2}
           className='keen-slider__next'
         >
           <CaretRight size={48} weight="bold" className="caret-right-icon" />
