@@ -65,6 +65,12 @@ export default function CartMenu() {
           className='icon-container'
         >
           <Handbag size={24} color={'#8D8D99'} weight="bold" />
+          {numberOfCartEntries > 0 &&
+            <div
+              className='counter'>
+              {cartCount}
+            </div>
+          }
         </div>
       </Trigger>
       <Dialog.Portal>

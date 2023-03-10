@@ -10,6 +10,26 @@ export const Trigger = styled(Dialog.Trigger, {
   cursor: 'pointer',
   padding: '0.75rem',
   maxHeight: '3rem',
+
+  position: 'relative',
+
+  '.counter': {
+    backgroundColor: '$red700',
+    color: '$white',
+    fontSize: '0.75rem',
+    fontWeight: 'bold',
+    borderRadius: 16,
+    minHeight: 18,
+    minWidth: 18,
+
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+
+    position: 'absolute',
+    top: -5,
+    right: -5,
+  },
 })
 
 export const Overlay = styled(Dialog.Overlay, {
@@ -60,13 +80,15 @@ export const CartItemsContainer = styled('div', {
   minHeight: 519,
   overflow: 'auto',
 
-  div: {
+  '.product__grid': {
     width: '100%',
     display: 'grid',
     gridTemplateColumns: 'min-content auto',
     gridTemplateRows: 'min-content auto',
     columnGap: 20,
     padding: '2rem 0 ',
+
+    position: 'relative',
 
     img: {
       gridRow: '1 / 3 span',
@@ -103,6 +125,24 @@ export const CartItemsContainer = styled('div', {
     alignSelf: 'center',
     margin: 'auto 0',
     maxWidth: '17.5rem',
+  },
+
+  '.counter': {
+    backgroundColor: '$red700',
+    color: '$white',
+    fontSize: '0.75rem',
+    fontWeight: 'bold',
+    borderRadius: 16,
+    minHeight: 20,
+    minWidth: 20,
+
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+
+    position: 'absolute',
+    bottom: 28,
+    left: 85,
   },
 })
 

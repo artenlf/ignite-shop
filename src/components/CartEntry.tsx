@@ -12,7 +12,7 @@ export function CartEntry({
   removeItem: CartActions['removeItem']
 }) {
   return (
-    <div>
+    <div className="product__grid">
       <Image src={entry.imageUrl}
         width={102}
         height={93}
@@ -24,9 +24,11 @@ export function CartEntry({
         {entry.formattedValue}
       </strong>
       <button onClick={() => removeItem(entry.id)}>Remover</button>
-      {/* <p>
-        {entry.quantity} x{' '}
-      </p> */}
+      {
+        <div className="counter">
+          {entry.quantity}
+        </div>
+      }
     </div>
   )
 }
