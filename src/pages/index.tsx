@@ -12,11 +12,11 @@ import { CaretLeft, CaretRight, Handbag } from "phosphor-react";
 import { MouseEvent, useState } from "react";
 import Stripe from "stripe";
 import { formatCurrencyString, useShoppingCart } from "use-shopping-cart";
-import { ProductProps } from "../components/CartMenu";
+import { IProduct } from "../components/CartMenu";
 import { stripe } from "../lib/stripe";
 
 interface HomeProps {
-  products: ProductProps[];
+  products: IProduct[];
 }
 
 
@@ -41,7 +41,7 @@ export default function Home({ products }: HomeProps) {
 
   function handleAddToCart(
     e: MouseEvent<HTMLButtonElement>,
-    products: ProductProps
+    products: IProduct
   ) {
     e.preventDefault();
     addItem(products);

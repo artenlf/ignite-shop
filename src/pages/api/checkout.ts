@@ -1,9 +1,9 @@
-import { ProductProps } from "@/src/components/CartMenu";
+import { IProduct } from "@/src/components/CartMenu";
 import { stripe } from "@/src/lib/stripe";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function checkoutHandler(req: NextApiRequest, res: NextApiResponse) {
-  const { products } = req.body as { products: ProductProps };
+  const { products } = req.body as { products: IProduct };
 
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });

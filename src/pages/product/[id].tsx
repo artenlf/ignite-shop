@@ -1,4 +1,4 @@
-import { ProductProps } from "@/src/components/CartMenu"
+import { IProduct } from "@/src/components/CartMenu"
 import { stripe } from "@/src/lib/stripe"
 import { ImageContainer, ProductContainer, ProductDetails } from "@/src/styles/pages/product"
 import { GetStaticPaths, GetStaticProps } from "next"
@@ -7,6 +7,9 @@ import Image from "next/image"
 import Stripe from "stripe"
 import { formatCurrencyString, useShoppingCart } from "use-shopping-cart"
 
+interface ProductProps {
+  product: IProduct;
+}
 
 export default function Product({ product }: ProductProps) {
   const { addItem } = useShoppingCart();

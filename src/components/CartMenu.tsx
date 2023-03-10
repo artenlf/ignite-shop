@@ -15,7 +15,7 @@ import {
 } from '../styles/pages/components/cart';
 import { CartEntry } from './CartEntry';
 
-export interface ProductProps {
+export interface IProduct {
   id: string,
   name: string,
   imageUrl: string,
@@ -24,7 +24,6 @@ export interface ProductProps {
   defaultPriceId: string,
   currency: string,
   price_id: string,
-
 }
 
 export default function CartMenu() {
