@@ -46,10 +46,10 @@ export default function Home({ products }: HomeProps) {
 
   function handleAddToCart(
     e: MouseEvent<HTMLButtonElement>,
-    products: IProduct
+    product: IProduct
   ) {
     e.preventDefault();
-    addItem(products);
+    addItem(product);
   }
 
   function handlePrevSlide(event: any) {
@@ -153,6 +153,7 @@ export const getStaticProps: GetStaticProps = async () => {
       name: product.name,
       imageUrl: product.images[0],
       price: price.unit_amount,
+      defaultPriceId: price.id,
     }
   })
 
