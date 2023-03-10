@@ -1,18 +1,28 @@
-import { IProduct } from "@/src/components/CartMenu"
 import { stripe } from "@/src/lib/stripe"
-import { ImageContainer, ProductContainer, ProductDetails } from "@/src/styles/pages/product"
+import * as Toast from '@radix-ui/react-toast'
 import { GetStaticPaths, GetStaticProps } from "next"
 import Head from "next/head"
 import Image from "next/image"
+import { useState } from 'react'
 import Stripe from "stripe"
+
 import { formatCurrencyString, useShoppingCart } from "use-shopping-cart"
 
-interface ProductProps {
+import { IProduct } from "@/src/components/CartMenu"
+import { ToastDescription, ToastRoot, ToastTitle, ToastViewport } from '@/src/styles/pages/components/toast'
+import { ImageContainer, ProductContainer, ProductDetails } from "@/src/styles/pages/product"
+
+
+
+export interface ProductProps {
   product: IProduct;
 }
 
 export default function Product({ product }: ProductProps) {
   const { addItem } = useShoppingCart();
+  const [toastOpen, setToastOpen] = useState(false);
+
+
 
   return (
     <>
@@ -39,11 +49,25 @@ export default function Product({ product }: ProductProps) {
               })
             }
           </span>
-
           <p>{product.description}</p>
-          <button onClick={() => addItem(product)}>
-            Comprar agora
+          <button onClick={() => {
+            addItem(product)
+            setToastOpen(true)
+          }
+          }
+          >
+            Colocar na sacola
           </button>
+          <Toast.Provider swipeDirection="right">
+            <ToastRoot
+              open={toastOpen}
+              onOpenChange={setToastOpen}
+            >
+              <ToastTitle>Adicionado à sacola!</ToastTitle>
+              <ToastDescription>{product.name}</ToastDescription>
+            </ToastRoot>
+            <ToastViewport />
+          </Toast.Provider>
         </ProductDetails>
       </ProductContainer>
     </>

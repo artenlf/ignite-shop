@@ -1,19 +1,22 @@
-import Image from "next/image";
-
-import { useKeenSlider } from 'keen-slider/react';
-
-import 'keen-slider/keen-slider.min.css';
-import { HomeContainer, Product } from "../styles/pages/home";
+import Stripe from "stripe";
 
 import { GetStaticProps } from "next";
 import Head from "next/head";
+import Image from "next/image";
 import Link from "next/link";
-import { CaretLeft, CaretRight, Handbag } from "phosphor-react";
+
 import { MouseEvent, useState } from "react";
-import Stripe from "stripe";
+
+import * as Toast from '@radix-ui/react-toast';
+import { useKeenSlider } from 'keen-slider/react';
+import { CaretLeft, CaretRight, Handbag } from "phosphor-react";
 import { formatCurrencyString, useShoppingCart } from "use-shopping-cart";
+
+import 'keen-slider/keen-slider.min.css';
 import { IProduct } from "../components/CartMenu";
 import { stripe } from "../lib/stripe";
+import { ToastRoot, ToastTitle, ToastViewport } from "../styles/pages/components/toast";
+import { HomeContainer, Product } from "../styles/pages/home";
 
 interface HomeProps {
   products: IProduct[];
@@ -22,6 +25,8 @@ interface HomeProps {
 
 export default function Home({ products }: HomeProps) {
   const { addItem } = useShoppingCart();
+
+  const [toastOpen, setToastOpen] = useState(false);
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [sliderRef, slider] = useKeenSlider({
@@ -87,10 +92,16 @@ export default function Home({ products }: HomeProps) {
                   </div>
                   <button
                     className="icon-background"
-                    onClick={(e) => handleAddToCart(e, product)}
+                    onClick={
+                      (e) => {
+                        handleAddToCart(e, product)
+                        setToastOpen(true)
+                      }
+                    }
                   >
                     <Handbag size={32} weight="bold" />
                   </button>
+
                 </footer>
               </Product>
             </Link>
@@ -112,6 +123,17 @@ export default function Home({ products }: HomeProps) {
         >
           <CaretRight size={48} weight="bold" className="caret-right-icon" />
         </button>
+
+        <Toast.Provider swipeDirection="right">
+
+          <ToastRoot
+            open={toastOpen}
+            onOpenChange={setToastOpen}
+          >
+            <ToastTitle>Adicionado à sacola!</ToastTitle>
+          </ToastRoot>
+          <ToastViewport />
+        </Toast.Provider>
       </HomeContainer>
     </>
   )
