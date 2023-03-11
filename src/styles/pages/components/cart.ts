@@ -54,7 +54,7 @@ export const Content = styled(Dialog.Content, {
 })
 
 export const Title = styled(Dialog.Title, {
-  fontSize: 20,
+  fontSize: '$lg',
   marginTop: '1.5rem',
 })
 
@@ -98,11 +98,11 @@ export const CartItemsContainer = styled('div', {
 
     strong: {
       fontWeight: 'bold',
-      fontSize: '1.125rem',
+      fontSize: '$md',
     },
 
     span: {
-      fontSize: '1.125rem',
+      fontSize: '$md',
     },
 
     button: {
@@ -120,7 +120,7 @@ export const CartItemsContainer = styled('div', {
   },
 
   '.empty-cart': {
-    fontSize: '1.25rem',
+    fontSize: '$lg',
     textAlign: 'center',
     alignSelf: 'center',
     margin: 'auto 0',
@@ -165,7 +165,7 @@ export const SummaryContainer = styled('div', {
 
   strong: {
     gridRow: '2',
-    fontSize: '1.125rem',
+    fontSize: '$md',
   },
 
   button: {
@@ -177,7 +177,7 @@ export const SummaryContainer = styled('div', {
 
     backgroundColor: '$green500',
     color: '$white',
-    fontSize: '1.125rem',
+    fontSize: '$md',
     fontWeight: 'bold',
     transition: '0.2s ease-in-out',
 
