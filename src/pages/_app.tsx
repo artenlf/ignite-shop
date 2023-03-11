@@ -29,5 +29,4 @@ export default function App({ Component, pageProps }: AppProps) {
       </Container>
     </CartProvider>
   )
-
 }
