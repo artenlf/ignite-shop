@@ -2,6 +2,7 @@ import { styled } from "..";
 
 export const SuccessContainer = styled('main', {
   display: 'flex',
+  gap: '1.5rem',
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
@@ -11,10 +12,11 @@ export const SuccessContainer = styled('main', {
   h1: {
     fontSize: '$2xl',
     color: '$gray100',
+    lineHeight: 1.4,
   },
 
   p: {
-    fontSize: 'xl',
+    fontSize: '$xl',
     color: '$gray300',
     maxWidth: 560,
     textAlign: 'center',
@@ -25,7 +27,7 @@ export const SuccessContainer = styled('main', {
   a: {
     display: 'block',
     marginTop: '5rem',
-    fontSize: 'lg',
+    fontSize: '$lg',
     color: '$green500',
     textDecoration: 'none',
     fontWeight: 'bold',
@@ -37,19 +39,27 @@ export const SuccessContainer = styled('main', {
 })
 
 export const ImageContainer = styled('div', {
-  width: '100%',
-  maxWidth: 130,
-  height: 145,
-  background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
-  borderRadius: 8,
-  marginTop: '4rem',
-  padding: '0.25rem',
 
   display: 'flex',
-  alignItems: 'center',
   justifyContent: 'center',
+  marginBottom: '1.5rem',
+  marginLeft: '3.5rem',
+  width: '100%',
 
-  img: {
-    objectFit: 'cover',
+  div: {
+    minWidth: 140,
+    height: 140,
+    background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
+    borderRadius: '100%',
+    marginLeft: '-3.5rem',
+    padding: '0.25rem',
+
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+
+    img: {
+      objectFit: 'cover',
+    }
   }
 })
