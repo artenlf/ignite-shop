@@ -85,7 +85,8 @@ export default function Home({ products }: HomeProps) {
                       {
                         formatCurrencyString({
                           value: product.price,
-                          currency: 'BRL'
+                          currency: 'BRL',
+                          language: 'PT-BR',
                         })
                       }
                     </span>

@@ -45,7 +45,8 @@ export default function Product({ product }: ProductProps) {
             {
               formatCurrencyString({
                 value: product.price,
-                currency: 'BRL'
+                currency: 'BRL',
+                language: 'PT-BR',
               })
             }
           </span>
