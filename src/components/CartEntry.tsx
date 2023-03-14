@@ -1,15 +1,20 @@
 import Image from "next/image";
+import { Minus, Plus } from "phosphor-react";
+import { CartActions } from "use-shopping-cart";
 import {
-  CartActions,
   CartEntry as ICartEntry
 } from "use-shopping-cart/core";
 
 export function CartEntry({
   entry,
   removeItem,
+  incrementItem,
+  decrementItem,
 }: {
-  entry: ICartEntry
-  removeItem: CartActions['removeItem']
+  entry: ICartEntry;
+  removeItem: CartActions["removeItem"];
+  incrementItem: CartActions["incrementItem"];
+  decrementItem: CartActions["decrementItem"];
 }) {
 
   const entryPriceFormattedToPtBr = entry.formattedValue.
@@ -28,7 +33,15 @@ export function CartEntry({
       <strong>
         {entryPriceFormattedToPtBr}
       </strong>
-      <button onClick={() => removeItem(entry.id)}>Remover</button>
+      <div>
+        <button onClick={() => decrementItem(entry.id)}>
+          <Minus size={14} weight="fill" className="minus-icon" />
+        </button>
+        <button onClick={() => incrementItem(entry.id)}>
+          <Plus size={14} weight="fill" className="plus-icon" />
+        </button>
+        <button onClick={() => removeItem(entry.id)}>Remover</button>
+      </div>
       {
         <div className="counter">
           {entry.quantity}

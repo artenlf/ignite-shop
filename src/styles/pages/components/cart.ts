@@ -186,7 +186,7 @@ export const SummaryContainer = styled('div', {
       opacity: 0.5,
     },
 
-    '&:hover': {
+    '&:not(:disabled):hover': {
       backgroundColor: '$green300',
       cursor: 'pointer',
     }

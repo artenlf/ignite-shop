@@ -29,10 +29,21 @@ export interface IProduct {
 export default function CartMenu() {
 
   const cart = useShoppingCart()
-  const { removeItem, cartCount, cartDetails, formattedTotalPrice } = cart;
+  const {
+    incrementItem,
+    decrementItem,
+    removeItem,
+    cartCount,
+    cartDetails,
+    formattedTotalPrice } = cart;
 
   const cartEntries = Object.values(cartDetails ?? {}).map((entry) => (
-    <CartEntry key={entry.id} entry={entry} removeItem={removeItem} />
+    <CartEntry
+      key={entry.id}
+      entry={entry}
+      incrementItem={incrementItem}
+      decrementItem={decrementItem}
+      removeItem={removeItem} />
   ))
 
   const numberOfCartEntries = cartEntries.length;
@@ -103,7 +114,7 @@ export default function CartMenu() {
             <strong>Valor total</strong>
             <strong>{totalPriceFormattedToPtBr}</strong>
             <button
-              disabled={cartCount === 0 && isCreatingCheckoutSession}
+              disabled={cartCount < 1 || isCreatingCheckoutSession}
               onClick={handleCheckout}
             >
               Finalizar compra
