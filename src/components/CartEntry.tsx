@@ -6,11 +6,16 @@ import {
 
 export function CartEntry({
   entry,
-  removeItem
+  removeItem,
 }: {
   entry: ICartEntry
   removeItem: CartActions['removeItem']
 }) {
+
+  const entryPriceFormattedToPtBr = entry.formattedValue.
+    replace('.', ',',).
+    replace('R$', 'R$ ')
+
   return (
     <div className="product__grid">
       <Image src={entry.imageUrl}
@@ -21,7 +26,7 @@ export function CartEntry({
       />
       <span>{entry.name}</span>
       <strong>
-        {entry.formattedValue}
+        {entryPriceFormattedToPtBr}
       </strong>
       <button onClick={() => removeItem(entry.id)}>Remover</button>
       {

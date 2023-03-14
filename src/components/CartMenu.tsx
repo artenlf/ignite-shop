@@ -57,6 +57,10 @@ export default function CartMenu() {
     }
   }
 
+  const totalPriceFormattedToPtBr = formattedTotalPrice.
+    replace('.', ',',).
+    replace('R$', 'R$ ')
+
   return (
     <Dialog.Root>
       <Trigger>
@@ -97,7 +101,7 @@ export default function CartMenu() {
               {cartCount !== 1 ? ' itens' : ' item'}
             </span>
             <strong>Valor total</strong>
-            <strong>{formattedTotalPrice}</strong>
+            <strong>{totalPriceFormattedToPtBr}</strong>
             <button
               disabled={cartCount === 0 && isCreatingCheckoutSession}
               onClick={handleCheckout}
