@@ -87,7 +87,7 @@ export default function CartMenu() {
               <span
                 className='empty-cart'
               >
-                Ops! Parece que seu carrinho está vazio.
+                Ops! Parece que a sua sacola está vazia.
               </span>
             }
             {numberOfCartEntries > 0 &&
