@@ -23,7 +23,8 @@ export default async function checkoutHandler(req: NextApiRequest, res: NextApiR
     mode: "payment",
     line_items: Object.values(products ?? {}).map((product) => ({
       price: product.defaultPriceId,
-      quantity: 1,
+      adjustable_quantity: { enabled: true, minimum: 1, maximum: 100 },
+      quantity: product.quantity,
     })),
   });
 
