@@ -99,23 +99,39 @@ export const CartItemsContainer = styled('div', {
     strong: {
       fontWeight: 'bold',
       fontSize: '$md',
+      padding: '0.5rem 0',
     },
 
     span: {
       fontSize: '$md',
     },
 
-    button: {
-      background: 'transparent',
-      border: 'none',
+    '.controls': {
+      display: 'flex',
+      gap: 32,
       color: '$green500',
-      fontWeight: 'bold',
-      maxWidth: 'fit-content',
 
-      '&:hover': {
-        borderBottom: '1px solid $green500',
-        lineHeight: 'calc(100% - 1px)',
+      ':hover': {
+        color: '$green300',
+        cursor: 'pointer'
       },
+
+      ':last-child': {
+        border: 'transparent',
+      },
+    },
+
+    button: {
+      display: 'flex',
+      alignItems: 'center',
+      background: '$gray800',
+      border: '2px outset $green300',
+      borderRadius: 8,
+      color: '$green500',
+      fontSize: '0.875rem',
+      fontWeight: 'bold',
+      padding: '0 0.15rem',
+      maxHeight: '1.5rem',
     },
   },
 

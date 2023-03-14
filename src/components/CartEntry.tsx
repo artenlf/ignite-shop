@@ -33,12 +33,12 @@ export function CartEntry({
       <strong>
         {entryPriceFormattedToPtBr}
       </strong>
-      <div>
+      <div className="controls">
         <button onClick={() => decrementItem(entry.id)}>
-          <Minus size={14} weight="fill" className="minus-icon" />
+          <Minus size={14} weight="bold" className="minus-icon" />
         </button>
         <button onClick={() => incrementItem(entry.id)}>
-          <Plus size={14} weight="fill" className="plus-icon" />
+          <Plus size={14} weight="bold" className="plus-icon" />
         </button>
         <button onClick={() => removeItem(entry.id)}>Remover</button>
       </div>
